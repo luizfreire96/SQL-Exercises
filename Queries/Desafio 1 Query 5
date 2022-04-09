@@ -1,0 +1,3 @@
+select customer_state, customer_city
+from olist_customers_dataset
+where customer_city <> 'sao paulo' and customer_state = 'SP'

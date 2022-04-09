@@ -1,0 +1,6 @@
+CREATE VIEW SELLER_STATS AS SELECT COUNT (items.order_id) AS ITENS_VENDIDOS, seller_id AS FORNECEDOR, 
+COUNT (DISTINCT items.order_id) AS TOTAL_DE_PEDIDOS, 
+AVG(julianday(order_delivered_carrier_date) - julianday(order_approved_at)) as  TEMPO_MEDIO_POSTAGEM
+from olist_order_items_dataset as items
+left join olist_orders_dataset as pedidos on items.order_id = pedidos.order_id
+group by seller_id

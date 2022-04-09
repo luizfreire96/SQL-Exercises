@@ -1,0 +1,4 @@
+select *
+from olist_orders_dataset
+where order_purchase_timestamp like "2017%"
+order by order_purchase_timestamp
