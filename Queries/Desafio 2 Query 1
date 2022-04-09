@@ -1,8 +1,0 @@
-select count (olist_order_items_dataset.product_id) as QTD, product_category_name as CATEGORIA, customer_state as ESTADO
-from olist_order_items_dataset
-inner join olist_orders_dataset on olist_order_items_dataset.order_id = olist_orders_dataset.order_id
-inner join olist_products_dataset on olist_order_items_dataset.product_id = olist_products_dataset.product_id
-inner join olist_customers_dataset on olist_orders_dataset.customer_id = olist_customers_dataset.customer_id
-group by CATEGORIA, ESTADO
-having QTD >= 1000
-order by ESTADO

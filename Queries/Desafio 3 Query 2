@@ -1,7 +1,0 @@
-SELECT CLIENTE, APROVADO_EM, VALOR_PAGO, VALOR_TOTAL
-FROM (SELECT customer_id as CLIENTE, order_approved_at as APROVADO_EM, payment_value AS VALOR_PAGO,
-SUM(payment_value) over (PARTITION by customer_id) as VALOR_TOTAL
-from olist_order_payments_dataset as PAGAMENTOS
-INNER join olist_orders_dataset as PEDIDOS on PEDIDOS.order_id = PAGAMENTOS.order_id)
-WHERE VALOR_PAGO <> VALOR_TOTAL
-ORDER BY VALOR_TOTAL
