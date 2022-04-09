@@ -1,0 +1,10 @@
+SELECT rank() OVER (order by VALOR_TOTAL_CATEGORIA DESC) as rank_,
+SUM(VALOR_TOTAL_CATEGORIA) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS ACUMULADO,
+CATEGORIA, TOTAL_VENDIDO, VALOR_TOTAL_CATEGORIA
+from (select product_category_name as CATEGORIA, 
+count(*) AS TOTAL_VENDIDO, 
+SUM(price)AS VALOR_TOTAL_CATEGORIA
+from olist_order_items_dataset as ITEM
+left join olist_products_dataset as PRODUTO on ITEM.product_id = PRODUTO.product_id
+GROUP BY product_category_name)
+ORDER BY rank_

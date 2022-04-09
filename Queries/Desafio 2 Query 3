@@ -1,0 +1,6 @@
+select sum(price) as TOTAL_VENDIDO, VENDEDORES.seller_id as VENDEDOR, product_category_name as CATEGORIA
+from olist_sellers_dataset as VENDEDORES
+inner join olist_order_items_dataset as ITEMS on ITEMS.seller_id = VENDEDORES.seller_id
+inner join olist_products_dataset as PRODUTOS on PRODUTOS.product_id = ITEMS.product_id
+group by VENDEDORES.seller_id, CATEGORIA
+order by TOTAL_VENDIDO DESC

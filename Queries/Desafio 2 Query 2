@@ -1,0 +1,5 @@
+select sum (payment_value) as TOTAL_GASTO, customer_id as CLIENTE
+from olist_orders_dataset
+inner join olist_order_payments_dataset on olist_order_payments_dataset.order_id = olist_orders_dataset.order_id
+group by customer_id
+order by TOTAL_GASTO DESC limit 5

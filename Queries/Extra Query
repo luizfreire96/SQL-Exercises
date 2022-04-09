@@ -1,0 +1,19 @@
+select AVG(review_score),
+case 
+	when substr(review_creation_date, 6, 2) = '01' then 'JANEIRO'
+    when substr(review_creation_date, 6, 2) = '02' then 'FEVEREIRO'
+    when substr(review_creation_date, 6, 2) = '03' then 'MARÇO'
+    when substr(review_creation_date, 6, 2) = '04' then 'ABRIL'
+    when substr(review_creation_date, 6, 2) = '05' then 'MAIO'
+    when substr(review_creation_date, 6, 2) = '06' then 'JUNHO'
+    when substr(review_creation_date, 6, 2) = '07' then 'JULHO'
+    when substr(review_creation_date, 6, 2) = '08' then 'AGOSTO'
+    when substr(review_creation_date, 6, 2) = '09' then 'SETEMBRO'
+    when substr(review_creation_date, 6, 2) = '10' then 'OUTUBRO'
+    when substr(review_creation_date, 6, 2) = '11' then 'NOVEMBRO'
+    when substr(review_creation_date, 6, 2) = '12' then 'DEZEMBRO'
+    END as MES,
+substr(review_creation_date, 1, 4) as ANO
+from olist_order_reviews_dataset
+group by MES, ANO
+order by ANO, substr(review_creation_date, 6, 2)
